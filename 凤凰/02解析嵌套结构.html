@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		  *{
+				padding:0;margin:0;
+			}
+			#menu{
+				position:absolute;
+				left:300px;
+				top:100px;
+			}
+			.main{
+				
+				float:left;
+			}
+     ul {
+			 list-style:none;
+		 }
+		 .main a{
+			 width:200px;
+			 height:30px;
+			 background:green;
+			 display:block;
+			 color:white;
+			 text-align:center;
+			 line-height:30px;
+		 }
+		 .main a:hover{
+			 background:pink;
+		 }
+		 .sub{
+			  display:none;
+		 }
+		 .sub li{
+			 width:200px;
+			 height:30px;
+			 background:#eee;
+			 text-align:center;
+			 line-height:30px;
+		 }
+		 .sub li:hover{
+			 background:pink;
+		 }
+		</style>
+		<script src="ajax.js"></script>
+		<script >
+		  window.onload=function(){
+				 var main= document.getElementsByClassName("main");
+				 var sub = document.getElementsByClassName("sub");
+				 
+				 for(var i=0;i<main.length;i++){
+					 main[i].index=i;
+					 main[i].onmouseover=function(){
+						 sub[this.index].style.display="block";
+					 }
+					 main[i].onmouseout=function(){
+						 sub[this.index].style.display="none";
+					 }
+				 }
+				 
+				 
+				var obj;
+				var as= document.getElementsByTagName("a");
+				var i=0;
+				ajax("list1.json",function(str){
+					obj= JSON.parse(str);
+				  // console.log(obj);
+					for(var key in obj){
+					  //console.log(obj[key].name);
+						as[i].innerHTML= obj[key].name;
+						var subLi= sub[i].getElementsByTagName("li");
+						// console.dir(subLi)
+						var subArr= obj[key].catalog;
+						// console.log(subArr);
+						for(var j=0;j<subArr.length;j++){
+							subLi[j].innerHTML= subArr[j];
+						}
+						i++;
+					}
+				});
+				
+			}
+		</script>
+	</head>
+	<body >
+	   <div id="menu">
+		   <ul>
+			   <li class="main">
+				   <a></a>
+					 <ul class="sub">
+					   <li>111</li>
+						 <li>222</li>
+						 <li>333</li>
+						 <li>444</li>
+					 </ul>
+				 </li>
+				 <li class="main">
+				   <a></a>
+					 <ul class="sub">
+					   <li>111</li>
+						 <li>222</li>
+						 <li>333</li>
+						 <li>444</li>
+					 </ul>
+				 </li>
+				 <li class="main">
+				   <a></a>
+					 <ul class="sub">
+					   <li>111</li>
+						 <li>222</li>
+						 <li>333</li>
+						 <li>444</li>
+					 </ul>
+				 </li>
+			 </ul>
+		  
+		 </div>
+	</body>
+	<script>
+	
+	
+	</script>
+</html>

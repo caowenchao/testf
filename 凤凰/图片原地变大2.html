@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		  *{
+				padding:0;margin:0;
+			}
+     img{
+		   width:400px;
+			 height:600px;
+			 position:absolute;
+			 
+		 }
+		 .div1{
+		   position:absolute;
+		 }
+		 #pic{
+		   position:relative;
+			 left:30px;
+			 top:20px;
+		 }
+		</style>
+		<script ></script>
+	</head>
+	<body >
+	   <div id="pic">
+	     <div class="div1" ><img src="img/0.jpg"> </div>
+		 <div class="div1" ><img src="img/1.jpg"> </div>
+		 <div class="div1" ><img src="img/2.jpg"> </div>
+		 <div class="div1" ><img src="img/3.jpg"> </div>
+		 <div class="div1" ><img src="img/4.jpg"> </div>
+		 <div class="div1" ><img src="img/5.jpg"> </div>
+		 <div class="div1" ><img src="img/6.jpg"> </div>
+		 <div class="div1" ><img src="img/7.jpg"> </div>
+		 <div class="div1" ><img src="img/8.jpg"> </div>
+		 </div>
+	</body>
+	<script>
+	   var div1=document.getElementsByClassName("div1");
+		 var j=-1;
+		 for(var i=0;i<div1.length;i++){
+			 if(i%3==0){
+				 j++;
+			 }
+			 div1[i].style.left= i%3*400+"px";
+			 div1[i].style.top= j*600+"px";
+		 }
+		 var imgs=document.getElementsByTagName("img");
+		 for(var i=0;i<imgs.length;i++){
+			 imgs[i].onmouseover=function(){
+				 this.style.width= this.offsetWidth+ 100+"px";
+				 this.style.height= this.offsetHeight+150+"px";
+				 this.style.left= this.offsetLeft-50+"px";
+				 this.style.top = this.offsetTop- 75+"px";
+				 this.style.zIndex= 1;
+		   }
+		   imgs[i].onmouseout=function(){
+				 this.style.width= this.offsetWidth - 100+"px";
+				 this.style.height= this.offsetHeight-150+"px";
+				 this.style.left= this.offsetLeft+50+"px";
+				 this.style.top = this.offsetTop+ 75+"px";
+				 this.style.zIndex= 0;
+		   }
+			 
+		 }
+     // var img=document.getElementsByTagName("img")[0];
+		 // img.onmouseover=function(){
+		   // this.style.width= this.offsetWidth+ 300+"px";
+			 // this.style.height= this.offsetHeight+200+"px";
+			 // this.style.left= this.offsetLeft-150+"px";
+			 // this.style.top = this.offsetTop- 100+"px";
+		 // }
+		 // img.onmouseout=function(){
+		   // this.style.width= this.offsetWidth - 300+"px";
+			 // this.style.height= this.offsetHeight-200+"px";
+			 // this.style.left= this.offsetLeft+150+"px";
+			 // this.style.top = this.offsetTop+ 100+"px";
+		 // }
+	</script>
+</html>

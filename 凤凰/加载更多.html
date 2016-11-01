@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			img{
+				width: 400px;
+				height: 600px;
+				}
+				#more{
+					width: 150px;
+					height: 150px;
+					background:url(img/more2.jpg);
+					background-size:cover ;
+					cursor: pointer;
+				    }
+		</style>
+		<script src="ajax.js"></script>
+	</head>
+	<body>
+		<img src="img/0.jpg"/>
+		<img src="img/1.jpg"/>
+		<img src="img/2.jpg"/>
+		<img src="img/3.jpg"/>
+		<div id="more"></div>
+	</body>
+	<script type="text/javascript">
+	   //加载更多
+		var more=document.getElementById("more");
+		var i=1;
+		more.onclick=function(){
+		ajax("img"+(i++)+".json",fn1,fn2);
+		//成功的回调函数
+		function fn1(str){
+			var arr=JSON.parse(str).src;
+			for(var i=0;i<arr.length;i++){
+				var _img=document.createElement("img");
+				 _img.src="img/"+arr[i];
+			document.body.insertBefore(_img,more);	
+			}
+		}
+		//失败的回调函数
+		function fn2(str){
+			if(str==404){
+			 alert("请注意健康")
+			}
+		 }
+		}
+	</script>
+</html>

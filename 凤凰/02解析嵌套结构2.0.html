@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		  *{
+				padding:0;margin:0;
+			}
+			#menu{
+				position:absolute;
+				left:300px;
+				top:100px;
+			}
+			.main{
+				
+				float:left;
+			}
+     ul {
+			 list-style:none;
+		 }
+		 .main a{
+			 width:200px;
+			 height:30px;
+			 background:green;
+			 display:block;
+			 color:white;
+			 text-align:center;
+			 line-height:30px;
+		 }
+		 .main a:hover{
+			 background:pink;
+		 }
+		 .sub{
+			   display:none;
+		 }
+		 .sub li{
+			 width:200px;
+			 height:30px;
+			 background:#eee;
+			 text-align:center;
+			 line-height:30px;
+		 }
+		 .sub li:hover{
+			 background:pink;
+		 }
+		</style>
+		<script src="ajax.js"></script>
+		<script >
+		  window.onload=function(){
+				 
+				 var menu= document.getElementById("menu");
+				 
+				
+				 
+				 
+				var obj;
+				//var as= document.getElementsByTagName("a");
+				var i=0;
+				ajax("list1.json",function(str){
+					obj= JSON.parse(str);
+				  // console.log(obj);
+					var menuUl= document.createElement("ul");
+					menu.appendChild(menuUl);
+					
+					for(var key in obj){
+					  /* //console.log(obj[key].name);
+						as[i].innerHTML= obj[key].name;
+						var subLi= sub[i].getElementsByTagName("li");
+						// console.dir(subLi)
+						var subArr= obj[key].catalog;
+						// console.log(subArr);
+						for(var j=0;j<subArr.length;j++){
+							subLi[j].innerHTML= subArr[j];
+						}
+						i++; */
+						//动态创建li节点 class=main 
+						var li=document.createElement("li");
+						li.className="main";
+						menuUl.appendChild(li);
+						var as= document.createElement("a");
+						li.appendChild(as);
+						var ul= document.createElement("ul");
+						ul.className="sub";
+						li.appendChild(ul);
+						//给导航菜单的标签赋值
+						as.innerHTML= obj[key].name;
+						
+						var subArr= obj[key].catalog;
+						for(var k=0;k<subArr.length;k++){
+							var ulLi= document.createElement("li");
+							ul.appendChild(ulLi);
+							ulLi.innerHTML= subArr[k];
+						}
+					}
+					var main= document.getElementsByClassName("main");
+				  var sub = document.getElementsByClassName("sub");
+				  for(var i=0;i<main.length;i++){
+					 main[i].index=i;
+					 main[i].onmouseover=function(){
+						 sub[this.index].style.display="block";
+					 }
+					 main[i].onmouseout=function(){
+						 sub[this.index].style.display="none";
+					 }
+				 }
+				});
+				
+			}
+		</script>
+	</head>
+	<body >
+	   <div id="menu">
+		
+		 </div>
+	</body>
+	<script>
+	
+	
+	</script>
+</html>
